@@ -1,0 +1,105 @@
+{
+  "name": "CrisprEsso_count_indel",
+  "title": "Count indel frequency using CRISPResso2",
+  "summary": "CrisprEsso_count_indel",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "fastq_R1",
+      "label": "R1 fastq read",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "fastq_R2",
+      "label": "R2 fastq read",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "sample_name",
+      "label": "sample name",
+      "class": "string",
+      "optional": true,
+      "default": "mySample",
+      "help": ""
+    },
+    {
+      "name": "amplicon_sequence",
+      "label": "Amplicon sequence",
+      "class": "string",
+      "optional": true,
+      "default": "TGACTGAATCGGAACAAGGCAAAGGCTATAAAAAAAATTAGCAGTATCCTCTTGGGGGCCCCTTCCCCACACTATCTCAATGCAAATATCTGTCTGAAACGGTCCCTGGCTAAACTCCACCCATGGGTTGGCCAGCCTTGCCTTGACCAATAGCCTTGACAAGGCAAACTTGACCAATAGTCTTAGAGTATCCAGTGAGGCCAGGGGCCGGCGGCTGGCTAGGGATGAAGAAT",
+      "help": ""
+    },
+    {
+      "name": "gRNA",
+      "label": "gRNA sequence",
+      "class": "string",
+      "optional": true,
+      "default": "CTTGTCAAGGCTATTGGTCA",
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "output",
+      "label": "CRISPResso output",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/CrisprEsso_count_indel.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0",
+    "execDepends": [
+    {"name": "default-jre",
+     "package_manager": "apt"}
+    ]
+  },
+  "access": {
+    "network": [
+      "*"
+    ]
+  },
+  "authorizedUsers": [
+    "user-appdpdnanexus_stjude.org",
+    "org-stjude_yclab",
+    "org-stjude_cloud_app_runners",
+    "org-stjude_cloud"
+  ],
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem2_ssd1_x4"
+        }
+      }
+    }
+		},
+  "openSource": false,
+  "developers": [
+    "user-yichao.li_stjude.org",
+    "org-dnanexus_tools_admin"
+  ]
+}
